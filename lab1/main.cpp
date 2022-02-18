@@ -13,45 +13,102 @@ using namespace std;
 union Bit16
 {
     void* checking;
-    short* sht;
-    unsigned short* usht;
+    short* short16;
+    unsigned short* unsignedShort;
 };
-// void showForTask3(string showName, int32_t num)
+
 template<class T>
 void showForTask3(string showName, T t)
 {
     Bit16 s = {t};
 	cout << ">>" << showName << ":\n";
-// 	cout << "Unsigned hex: " << hex << (uint16_t)num << endl; //беззнаковую интерпретацию в шестнадцатеричном представлении
-// 	cout << "Signed hex: " << hex << (int16_t)num << endl;    //знаковую интерпретацию в шестнадцатеричном представлении
-// 	cout << "Binary x16:   " << bitset<16>(num) << endl;      //беззнаковую интерпретацию в двоичном представлении; 
-// 	//знаковую интерпретацию в двоичном представлении;  ???????????
-//  	cout << "Binary x16:   " << bitset<16>(num) << endl;      //знаковую интерпретацию в двоичном представлении;  
-//  	cout << "Unsigned dec: " << dec << (uint16_t)num << endl; //беззнаковую интерпретацию в десятичном представлении;
-// 	cout << "Signed dec:   " << dec << (int16_t)num << endl;  //знаковую интерпретацию в десятичном представлении. 
-    cout << "Unsigned hex: " << hex << *s.usht << endl; //беззнаковую интерпретацию в шестнадцатеричном представлении
+    cout << "Unsigned hex: " << hex << *s.unsignedShort << endl; 
     cout.unsetf(ios::hex);
-	cout << "Signed hex: " << hex << *s.sht << endl;    //знаковую интерпретацию в шестнадцатеричном представлении
+	cout << "Signed hex: " << hex << *s.short16 << endl; 
 	cout.unsetf(ios::hex);
-	cout << "Binary x16:   " << std::bitset<sizeof(*s.usht) * CHAR_BIT>(*s.usht) << endl;      //беззнаковую интерпретацию в двоичном представлении; 
- 	cout << "Binary x16:   " <<  std::bitset<sizeof(*s.sht) * CHAR_BIT>(*s.sht) << endl;      //знаковую интерпретацию в двоичном представлении;  
- 	cout << "Unsigned dec: " << dec <<*s.usht  << endl; //беззнаковую интерпретацию в десятичном представлении;
+	cout << "Binary x16:   " << std::bitset<sizeof(*s.unsignedShort) * CHAR_BIT>(*s.unsignedShort) << endl;
+ 	cout << "Binary x16:   " <<  std::bitset<sizeof(*s.short16) * CHAR_BIT>(*s.short16) << endl;       
+ 	cout << "Unsigned dec: " << dec <<*s.unsignedShort  << endl; 
 	cout.unsetf(ios::dec);
-	cout << "Signed dec:   " <<  dec << *s.sht  << endl; 
+	cout << "Signed dec:   " <<  dec << *s.short16  << endl; 
     cout.unsetf(ios::dec);
 }
 
+union Bit32
+{
+    void* checking;
+    float* float32;
+    int* int32;
+    unsigned int* unsignedInt;
+    long* long32;
+    unsigned long* unsignedLong;
+};
 
-/*При помощи оператора sizeof языка С/С++ выясните,
-сколько байтов занимают переменные следующих типов языка С/С++: char,
-signed char, unsigned char, wchar_t, short, unsigned short, int,
-unsigned int, long, unsigned long, long long, unsigned long long,
-float, double, long double, size_t, ptrdiff_t, void*, char*, int*,
-unsigned int* на выбранной платформе.
-Обратите внимание на размеры целочисленных типов и чисел с плавающей
-запятой. Какие из них имеют разрядность 16, 32, 64 бита, учитывая, что байт
-x86/x86-64 — октет (8 бит)?
-*/
+template<class T>
+void showForTask4(string showName, T t)
+{
+    Bit32 s = {t};
+	cout << ">>" << showName << ":\n";
+	cout << "Float hex: " << hex << *s.float32 << endl; 
+    cout.unsetf(ios::hex);
+    cout << "Int hex: " << hex << *s.int32 << endl;
+    cout.unsetf(ios::hex);
+    cout << "Unsigned Int hex: " << hex << *s.unsignedInt << endl; 
+    cout.unsetf(ios::hex);
+	cout << "Long hex: " << hex << *s.long32 << endl; 
+	cout.unsetf(ios::hex);
+	cout << "Unsigned Long hex: " << hex << *s.unsignedLong << endl; 
+	cout.unsetf(ios::hex);
+	
+	cout << "Float binary x16:   " << std::bitset<sizeof(*s.float32) * CHAR_BIT>(*s.float32) << endl; 
+	cout << "Int binary x16:   " << std::bitset<sizeof(*s.int32) * CHAR_BIT>(*s.int32) << endl; 
+	cout << "Unsigned Int binary x16:   " << std::bitset<sizeof(*s.unsignedInt) * CHAR_BIT>(*s.unsignedInt) << endl;
+ 	cout << "Long Binary x16:   " <<  std::bitset<sizeof(*s.long32) * CHAR_BIT>(*s.long32) << endl; 
+ 	cout << "Unsigned Long  binary x16:   " << std::bitset<sizeof(*s.unsignedLong) * CHAR_BIT>(*s.unsignedLong) << endl; 
+ 	
+ 	cout << "Float dec: " << dec <<*s.float32  << endl; 
+	cout.unsetf(ios::dec);
+	cout << "Int dec: " << dec <<*s.int32  << endl; 
+	cout.unsetf(ios::dec);
+	cout << "Unsigned Int dec: " << dec <<*s.unsignedInt  << endl; 
+	cout.unsetf(ios::dec);
+ 	cout << "Long dec: " << dec <<*s.long32  << endl; 
+	cout.unsetf(ios::dec);
+	cout << "Unsigned Long  dec:   " <<  dec << *s.unsignedLong  << endl; 
+    cout.unsetf(ios::dec);
+}
+
+union Bit64
+{
+    void* checking;
+    double* double64;
+    long long* longLong;
+    unsigned long long* unsignedLongLong;
+};
+template<class T>
+void showForTask42(string showName, T t)
+{
+    Bit64 s = {t};
+	cout << ">>" << showName << ":\n";
+    cout << "Double hex: " << hex << *s.double64 << endl;
+    cout.unsetf(ios::hex);
+	cout << "Long long hex: " << hex << *s.longLong << endl;    
+	cout.unsetf(ios::hex);
+	cout << "Unsigned long long hex: " << hex << *s.unsignedLongLong << endl;    
+	cout.unsetf(ios::hex);
+	
+	cout << "Double Binary x16: " << std::bitset<sizeof(*s.double64) * CHAR_BIT>(*s.double64) << endl;
+	cout << "Long long Binary x16: " << std::bitset<sizeof(*s.longLong) * CHAR_BIT>(*s.longLong) << endl;       
+ 	cout << "Unsigned long long Binary x16: " <<  std::bitset<sizeof(*s.unsignedLongLong) * CHAR_BIT>(*s.unsignedLongLong) << endl;       
+ 	
+ 	cout << "Double dec: " << dec <<*s.double64  << endl; 
+	cout.unsetf(ios::dec);
+	cout << "Long long dec: " <<  dec << *s.longLong  << endl; 
+    cout.unsetf(ios::dec);
+    cout << "Unsigned long long  dec: " <<  dec << *s.unsignedLongLong  << endl; 
+    cout.unsetf(ios::dec);
+}
+
 template<typename T> 
 void showForTask2(string typeName)
 {
@@ -83,21 +140,8 @@ void task2()
 	showForTask2<unsigned int*>("unsigned int*");
 }
 
-/*
-Изучите, как интерпретируется одна и та же область памяти,
-если она рассматривается как знаковое или беззнаковое целое число, а также —
-как одно и то же число записывается в различных системах счисления.
-Для этого на языке C/C++ разработайте функцию void 𝑝𝑟𝑖𝑛𝑡16(void * 𝑝),
-которая печатает для 16-битной области памяти по заданному адресу 𝑝:
-а) целочисленную беззнаковую интерпретацию в шестнадцатеричном представлении; 
-б) целочисленную беззнаковую интерпретацию в двоичном представлении; 
-в) целочисленную беззнаковую интерпретацию в десятичном представлении;
-г) целочисленную знаковую интерпретацию в шестнадцатеричном представлении;
-д) целочисленную знаковую интерпретацию в двоичном представлении;
-е) целочисленную знаковую интерпретацию в десятичном представлении. 
-*/
 
-void print16(int16_t x,int16_t y,int16_t z)
+void print16(int16_t y,int16_t z)
 {
 	cout << endl << "---TASK 3---" << endl;
 	unsigned short minInt16UnS = 0;
@@ -112,17 +156,97 @@ void print16(int16_t x,int16_t y,int16_t z)
 	short maxInt16S = SHRT_MAX;
 	showForTask3("максимальное целое 16-битное значение со знаком", &maxInt16S);
 	cout << endl;
-	showForTask3("X", &x);
-	cout << endl;
 	showForTask3("Y", &y);
 	cout << endl;
 	showForTask3("Z", &z);
 }
 
+void print32(int32_t x,int32_t y,int32_t z)
+{
+	cout << endl << "---TASK 4.1---" << endl;
+	unsigned int minInt32UnS = 0;
+	showForTask4("минимальное целое 32-битное значение без знака", &minInt32UnS);
+	cout << endl;
+	unsigned int maxInt32UnS = UINT_MAX;
+	showForTask4("максимальное целое 32-битное значение без знака", &maxInt32UnS);
+	cout << endl;
+	int minInt32S = INT_MIN;
+	showForTask4("минимальное целое 32-битное значение со знаком", &minInt32S);
+	cout << endl;
+	int maxInt32S = INT_MAX;
+	showForTask4("максимальное целое 32-битное значение со знаком", &maxInt32S);
+	cout << endl;
+	showForTask4("X", &x);
+	cout << endl;
+	showForTask4("Y", &y);
+	cout << endl;
+	showForTask4("Z", &z);
+}
+
+void print64(int64_t x,int64_t y,int64_t z)
+{
+	cout << endl << "---TASK 4.2---" << endl;
+	unsigned int minInt32UnS = 0;
+	showForTask42("минимальное целое 64-битное значение без знака", &minInt32UnS);
+	cout << endl;
+	unsigned int maxInt32UnS = UINT_MAX;
+	showForTask42("максимальное целое 64-битное значение без знака", &maxInt32UnS);
+	cout << endl;
+	int minInt32S = INT_MIN;
+	showForTask42("минимальное целое 64-битное значение со знаком", &minInt32S);
+	cout << endl;
+	int maxInt32S = INT_MAX;
+	showForTask42("максимальное целое 64-битное значение со знаком", &maxInt32S);
+	cout << endl;
+	showForTask42("X", &x);
+	cout << endl;
+	showForTask42("Y", &y);
+	cout << endl;
+	showForTask42("Z", &z);
+}
+
+void printDump(const void* p, std::size_t N)
+{
+    const char* const start = static_cast<const char*>(p);
+    const char* const end = start + N;
+    const char* line = start;
+    while (line != end)
+    {
+        std::size_t lineLength = static_cast<std::size_t>(end - line);
+        for (const char* next = line; next != end && next != line + N; ++next)
+        {
+            char ch = *next;
+            if (next != line)
+                cout << " ";
+            cout.width(2);
+            cout.fill('0');
+            cout << hex << uppercase << static_cast<int>(static_cast<unsigned char>(ch));
+        }
+        cout << std::endl;
+        line += lineLength;
+    }
+    cout.unsetf(ios::hex);
+}
+
+void task5()
+{
+	cout << endl << "---TASK 5---" << endl;
+    int x = 0x8A8B8C8D;
+    printDump(&x, sizeof(x));
+    int array[3];
+    array[0] = 0x8A8B8C8D;
+    array[1] = 6;
+    array[2] = -3;
+    printDump(&array, sizeof(array));
+    double y = 6;
+    printDump(&y, sizeof(y));
+}
+
 int main()
 {	
 	task2();
-	print16(0x8A8B8C8D,6,-3);
-
+	print16(6,-3);
+        print32(0x8A8B8C8D,6,-3);
+    	print64(0x8A8B8C8D,6,-3);
+    	task5();
 }
-
