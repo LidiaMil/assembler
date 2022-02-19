@@ -6,37 +6,38 @@
 #include <cstddef>
 #include <string>
 #include <iomanip>
+#include <variant>
 
 using namespace std;
 
 
 union Bit16
 {
-    void* checking;
+    void* void15;
     short* short16;
     unsigned short* unsignedShort;
 };
 
-template<class T>
+template<typename T>
 void showForTask3(string showName, T t)
 {
-    Bit16 s = {t};
+    Bit16 bit16 = {t};
 	cout << ">>" << showName << ":\n";
-    cout << "Unsigned hex: " << hex << *s.unsignedShort << endl; 
+    cout << "Unsigned hex: " << hex << *bit16.unsignedShort << endl; 
     cout.unsetf(ios::hex);
-	cout << "Signed hex: " << hex << *s.short16 << endl; 
+	cout << "Signed hex: " << hex << *bit16.short16 << endl; 
 	cout.unsetf(ios::hex);
-	cout << "Binary x16:   " << std::bitset<sizeof(*s.unsignedShort) * CHAR_BIT>(*s.unsignedShort) << endl;
- 	cout << "Binary x16:   " <<  std::bitset<sizeof(*s.short16) * CHAR_BIT>(*s.short16) << endl;       
- 	cout << "Unsigned dec: " << dec <<*s.unsignedShort  << endl; 
+	cout << "Binary x16:   " << std::bitset<sizeof(*bit16.unsignedShort) * CHAR_BIT>(*bit16.unsignedShort) << endl;
+ 	cout << "Binary x16:   " <<  std::bitset<sizeof(*bit16.short16) * CHAR_BIT>(*bit16.short16) << endl;       
+ 	cout << "Unsigned dec: " << dec <<*bit16.unsignedShort  << endl; 
 	cout.unsetf(ios::dec);
-	cout << "Signed dec:   " <<  dec << *s.short16  << endl; 
+	cout << "Signed dec:   " <<  dec << *bit16.short16  << endl; 
     cout.unsetf(ios::dec);
 }
 
 union Bit32
 {
-    void* checking;
+    void* void32;
     float* float32;
     int* int32;
     unsigned int* unsignedInt;
@@ -44,68 +45,70 @@ union Bit32
     unsigned long* unsignedLong;
 };
 
-template<class T>
+template<typename T>
 void showForTask4(string showName, T t)
 {
-    Bit32 s = {t};
+    Bit32 bit32 = {t};
 	cout << ">>" << showName << ":\n";
-	cout << "Float hex: " << hex << *s.float32 << endl; 
+	cout << "Float hex: " << hex << *bit32.float32 << endl; 
     cout.unsetf(ios::hex);
-    cout << "Int hex: " << hex << *s.int32 << endl;
+    cout << "Int hex: " << hex << *bit32.int32 << endl;
     cout.unsetf(ios::hex);
-    cout << "Unsigned Int hex: " << hex << *s.unsignedInt << endl; 
+    cout << "Unsigned Int hex: " << hex << *bit32.unsignedInt << endl; 
     cout.unsetf(ios::hex);
-	cout << "Long hex: " << hex << *s.long32 << endl; 
+	cout << "Long hex: " << hex << *bit32.long32 << endl; 
 	cout.unsetf(ios::hex);
-	cout << "Unsigned Long hex: " << hex << *s.unsignedLong << endl; 
+	cout << "Unsigned Long hex: " << hex << *bit32.unsignedLong << endl; 
 	cout.unsetf(ios::hex);
 	
-	cout << "Float binary x16:   " << std::bitset<sizeof(*s.float32) * CHAR_BIT>(*s.float32) << endl; 
-	cout << "Int binary x16:   " << std::bitset<sizeof(*s.int32) * CHAR_BIT>(*s.int32) << endl; 
-	cout << "Unsigned Int binary x16:   " << std::bitset<sizeof(*s.unsignedInt) * CHAR_BIT>(*s.unsignedInt) << endl;
- 	cout << "Long Binary x16:   " <<  std::bitset<sizeof(*s.long32) * CHAR_BIT>(*s.long32) << endl; 
- 	cout << "Unsigned Long  binary x16:   " << std::bitset<sizeof(*s.unsignedLong) * CHAR_BIT>(*s.unsignedLong) << endl; 
+	cout << "Float binary x16:   " << std::bitset<sizeof(*bit32.float32) * CHAR_BIT>(*bit32.float32) << endl; 
+	cout << "Int binary x16:   " << std::bitset<sizeof(*bit32.int32) * CHAR_BIT>(*bit32.int32) << endl; 
+	cout << "Unsigned Int binary x16:   " << std::bitset<sizeof(*bit32.unsignedInt) * CHAR_BIT>(*bit32.unsignedInt) << endl;
+ 	cout << "Long Binary x16:   " <<  std::bitset<sizeof(*bit32.long32) * CHAR_BIT>(*bit32.long32) << endl; 
+ 	cout << "Unsigned Long  binary x16:   " << std::bitset<sizeof(*bit32.unsignedLong) * CHAR_BIT>(*bit32.unsignedLong) << endl; 
  	
- 	cout << "Float dec: " << dec <<*s.float32  << endl; 
+ 	cout << "Float dec: " << dec <<*bit32.float32  << endl; 
 	cout.unsetf(ios::dec);
-	cout << "Int dec: " << dec <<*s.int32  << endl; 
+	cout << "Int dec: " << dec <<*bit32.int32  << endl; 
 	cout.unsetf(ios::dec);
-	cout << "Unsigned Int dec: " << dec <<*s.unsignedInt  << endl; 
+	cout << "Unsigned Int dec: " << dec <<*bit32.unsignedInt  << endl; 
 	cout.unsetf(ios::dec);
- 	cout << "Long dec: " << dec <<*s.long32  << endl; 
+ 	cout << "Long dec: " << dec <<*bit32.long32  << endl; 
 	cout.unsetf(ios::dec);
-	cout << "Unsigned Long  dec:   " <<  dec << *s.unsignedLong  << endl; 
+	cout << "Unsigned Long  dec:   " <<  dec << *bit32.unsignedLong  << endl; 
     cout.unsetf(ios::dec);
 }
 
+
 union Bit64
 {
-    void* checking;
+    void* void64;
     double* double64;
     long long* longLong;
     unsigned long long* unsignedLongLong;
 };
-template<class T>
+
+template<typename T>
 void showForTask42(string showName, T t)
 {
-    Bit64 s = {t};
+    Bit64 bit64= {t};
 	cout << ">>" << showName << ":\n";
-    cout << "Double hex: " << hex << *s.double64 << endl;
+    cout << "Double hex: " << hex << *bit64.double64 << endl;
     cout.unsetf(ios::hex);
-	cout << "Long long hex: " << hex << *s.longLong << endl;    
+	cout << "Long long hex: " << hex << *bit64.longLong << endl;    
 	cout.unsetf(ios::hex);
-	cout << "Unsigned long long hex: " << hex << *s.unsignedLongLong << endl;    
+	cout << "Unsigned long long hex: " << hex << *bit64.unsignedLongLong << endl;    
 	cout.unsetf(ios::hex);
 	
-	cout << "Double Binary x16: " << std::bitset<sizeof(*s.double64) * CHAR_BIT>(*s.double64) << endl;
-	cout << "Long long Binary x16: " << std::bitset<sizeof(*s.longLong) * CHAR_BIT>(*s.longLong) << endl;       
- 	cout << "Unsigned long long Binary x16: " <<  std::bitset<sizeof(*s.unsignedLongLong) * CHAR_BIT>(*s.unsignedLongLong) << endl;       
+	cout << "Double Binary x16: " << std::bitset<sizeof(*bit64.double64) * CHAR_BIT>(*bit64.double64) << endl;
+	cout << "Long long Binary x16: " << std::bitset<sizeof(*bit64.longLong) * CHAR_BIT>(*bit64.longLong) << endl;       
+ 	cout << "Unsigned long long Binary x16: " <<  std::bitset<sizeof(*bit64.unsignedLongLong) * CHAR_BIT>(*bit64.unsignedLongLong) << endl;       
  	
- 	cout << "Double dec: " << dec <<*s.double64  << endl; 
+ 	cout << "Double dec: " << dec <<*bit64.double64  << endl; 
 	cout.unsetf(ios::dec);
-	cout << "Long long dec: " <<  dec << *s.longLong  << endl; 
+	cout << "Long long dec: " <<  dec << *bit64.longLong  << endl; 
     cout.unsetf(ios::dec);
-    cout << "Unsigned long long  dec: " <<  dec << *s.unsignedLongLong  << endl; 
+    cout << "Unsigned long long  dec: " <<  dec << *bit64.unsignedLongLong  << endl; 
     cout.unsetf(ios::dec);
 }
 
@@ -232,13 +235,16 @@ void task5()
 {
 	cout << endl << "---TASK 5---" << endl;
     int x = 0x8A8B8C8D;
+	cout << endl << x << endl;
     printDump(&x, sizeof(x));
     int array[3];
     array[0] = 0x8A8B8C8D;
     array[1] = 6;
     array[2] = -3;
+    cout << endl << array[3] << endl;
     printDump(&array, sizeof(array));
     double y = 6;
+    cout << endl << y << endl;
     printDump(&y, sizeof(y));
 }
 
@@ -246,7 +252,7 @@ int main()
 {	
 	task2();
 	print16(6,-3);
-        print32(0x8A8B8C8D,6,-3);
-    	print64(0x8A8B8C8D,6,-3);
-    	task5();
+    print32(0x8A8B8C8D,6,-3);
+    print64(0x8A8B8C8D,6,-3);
+    task5();
 }
