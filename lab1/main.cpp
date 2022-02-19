@@ -50,6 +50,10 @@ void showForTask4(string showName, T t)
 {
     Bit32 bit32 = {t};
 	cout << ">>" << showName << ":\n";
+	cout << "Float fix: " << fixed << *bit32.float32 << endl;
+	cout.unsetf(ios::fixed);
+    cout << "Float exp: " << scientific << *bit32.float32 << endl<< endl;
+    cout.unsetf(ios::scientific);
 	cout << "Float hex: " << hex << *bit32.float32 << endl; 
     cout.unsetf(ios::hex);
     cout << "Int hex: " << hex << *bit32.int32 << endl;
@@ -93,6 +97,11 @@ void showForTask42(string showName, T t)
 {
     Bit64 bit64= {t};
 	cout << ">>" << showName << ":\n";
+	cout << "Double fixed: " << fixed << *bit64.double64 << endl;
+    cout.unsetf(ios::fixed);
+    cout << "Double exp: " << scientific << *bit64.double64 << endl<< endl;
+    cout.unsetf(ios::scientific);
+
     cout << "Double hex: " << hex << *bit64.double64 << endl;
     cout.unsetf(ios::hex);
 	cout << "Long long hex: " << hex << *bit64.longLong << endl;    
@@ -164,66 +173,105 @@ void print16(int16_t y,int16_t z)
 	showForTask3("Z", &z);
 }
 
-void print32(int32_t x,int32_t y,int32_t z)
+void print32()
 {
 	cout << endl << "---TASK 4.1---" << endl;
 	unsigned int minInt32UnS = 0;
-	showForTask4("минимальное целое 32-битное значение без знака", &minInt32UnS);
+	showForTask4("int минимальное целое 32-битное значение без знака", &minInt32UnS);
 	cout << endl;
 	unsigned int maxInt32UnS = UINT_MAX;
-	showForTask4("максимальное целое 32-битное значение без знака", &maxInt32UnS);
+	showForTask4("int максимальное целое 32-битное значение без знака", &maxInt32UnS);
 	cout << endl;
 	int minInt32S = INT_MIN;
-	showForTask4("минимальное целое 32-битное значение со знаком", &minInt32S);
+	showForTask4("int минимальное целое 32-битное значение со знаком", &minInt32S);
 	cout << endl;
 	int maxInt32S = INT_MAX;
-	showForTask4("максимальное целое 32-битное значение со знаком", &maxInt32S);
+	showForTask4("int максимальное целое 32-битное значение со знаком", &maxInt32S);
 	cout << endl;
-	showForTask4("X", &x);
+	int intX = 0x8A8B8C8D;
+	showForTask4("int X", &intX);
 	cout << endl;
-	showForTask4("Y", &y);
+	int intY = 6;
+	showForTask4("int Y", &intY);
 	cout << endl;
-	showForTask4("Z", &z);
+	int intZ = -3;
+	showForTask4("int Z", &intZ);
+	cout << endl;
+	unsigned long minLong32U = 0;
+	showForTask4("long минимальное 32-битное значение без знаком", &minLong32U);
+	cout << endl;
+	unsigned long maxLong32U = LONG_MAX;
+	showForTask4("long максимальное 32-битное значение без знаком", &maxLong32U);
+	cout << endl;
+	long minLong32S = LONG_MIN;
+	showForTask4("long минимальное 32-битное значение со знаком", &minLong32S);
+	cout << endl;
+	long maxLong32S = LONG_MAX;
+	showForTask4("long максимальное 32-битное значение со знаком", &maxLong32S);
+	cout << endl;
+	float floatX = 0x8A8B8C8D;
+	showForTask4("float X", &floatX);
+	cout << endl;
+	float floatY = 6;
+	showForTask4("float Y", &floatY);
+	cout << endl;
+	float floatZ = -3;
+	showForTask4("float Z", &floatZ);
+	cout << endl;
 }
 
 void print64(int64_t x,int64_t y,int64_t z)
 {
 	cout << endl << "---TASK 4.2---" << endl;
-	unsigned int minInt32UnS = 0;
+	unsigned long long minInt32UnS = 0;
 	showForTask42("минимальное целое 64-битное значение без знака", &minInt32UnS);
 	cout << endl;
-	unsigned int maxInt32UnS = UINT_MAX;
+	unsigned long long maxInt32UnS = LLONG_MAX;
 	showForTask42("максимальное целое 64-битное значение без знака", &maxInt32UnS);
 	cout << endl;
-	int minInt32S = INT_MIN;
+	long long minInt32S = LLONG_MIN;
 	showForTask42("минимальное целое 64-битное значение со знаком", &minInt32S);
 	cout << endl;
-	int maxInt32S = INT_MAX;
+	long long maxInt32S = LLONG_MAX;
 	showForTask42("максимальное целое 64-битное значение со знаком", &maxInt32S);
 	cout << endl;
-	showForTask42("X", &x);
+	long long longlongX = 0x8A8B8C8D;
+	showForTask42("long long X", &longlongX);
 	cout << endl;
-	showForTask42("Y", &y);
+	long long longlongY = 6;
+	showForTask42("long long Y", &longlongY);
 	cout << endl;
-	showForTask42("Z", &z);
+	long long longlongZ = -3;
+	showForTask42("long long Z", &longlongZ);
+	cout << endl;
+	double doubleX = 0x8A8B8C8D;
+	showForTask42("double X", &doubleX);
+	cout << endl;
+	double doubleY = 6;
+	showForTask42("double Y", &doubleY);
+	cout << endl;
+	double doubleZ = -3;
+	showForTask42("double Z", &doubleZ);
+	cout << endl;
 }
 
 void printDump(const void* p, std::size_t N)
 {
+    // cout << endl << p << endl;
     const char* const start = static_cast<const char*>(p);
     const char* const end = start + N;
     const char* line = start;
     while (line != end)
     {
         std::size_t lineLength = static_cast<std::size_t>(end - line);
-        for (const char* next = line; next != end && next != line + N; ++next)
+        for (const char* i = line; i != end && i != line + N; ++i)
         {
-            char ch = *next;
-            if (next != line)
+            char ch = *i;
+            if (i != line)
                 cout << " ";
             cout.width(2);
             cout.fill('0');
-            cout << hex << uppercase << static_cast<int>(static_cast<unsigned char>(ch));
+            cout << hex << static_cast<int>(static_cast<unsigned char>(ch));
         }
         cout << std::endl;
         line += lineLength;
@@ -235,16 +283,13 @@ void task5()
 {
 	cout << endl << "---TASK 5---" << endl;
     int x = 0x8A8B8C8D;
-	cout << endl << x << endl;
     printDump(&x, sizeof(x));
     int array[3];
     array[0] = 0x8A8B8C8D;
     array[1] = 6;
     array[2] = -3;
-    cout << endl << array[3] << endl;
     printDump(&array, sizeof(array));
     double y = 6;
-    cout << endl << y << endl;
     printDump(&y, sizeof(y));
 }
 
@@ -252,7 +297,8 @@ int main()
 {	
 	task2();
 	print16(6,-3);
-    print32(0x8A8B8C8D,6,-3);
+    print32();
     print64(0x8A8B8C8D,6,-3);
     task5();
 }
+
